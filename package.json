@@ -1,0 +1,27 @@
+{
+  "name": "rabidzoo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwind build src/style.css -o public/style.css",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haybarcheezy/rabidzoo.git"
+  },
+  "author": "Hayden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haybarcheezy/rabidzoo/issues"
+  },
+  "homepage": "https://github.com/haybarcheezy/rabidzoo#readme",
+  "dependencies": {
+    "cool-ascii-faces": "^1.3.4",
+    "express": "^4.17.1",
+    "isotope-layout": "^3.0.6",
+    "tailwindcss": "^1.4.6"
+  }
+}
