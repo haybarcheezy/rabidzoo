@@ -1,4 +1,4 @@
-const filterBar = document.getElementById('filters')
+/* const filterBar = document.getElementById('filters')
 const newPhoto = document.getElementById('new-photo')
 
 var openmodal = document.querySelectorAll('.modal-open')
@@ -38,4 +38,12 @@ var openmodal = document.querySelectorAll('.modal-open')
       modal.classList.toggle('pointer-events-none')
       body.classList.toggle('modal-active')
     }
+    */
     
+const apiKey = 'ASQJivwh7S8uzGIJjmsscz'
+const client = filestack.init(apiKey);
+const newPhoto = document.getElementById('add-photo');
+
+newPhoto.addEventListener("click", () => {
+  client.picker().open();
+})

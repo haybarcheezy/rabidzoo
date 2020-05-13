@@ -16,5 +16,3 @@ window.addEventListener("scroll", () => {
     }
     else {removeShadow();}
 })
-
-console.log(scrollPosition)

@@ -5,6 +5,14 @@
   justify-content: center;
 }
 
+.is-checked {
+  background-color: #1a202c!important;
+  color: #f7fafc!important;
+}
+.fsp-picker__brand-container {
+  display: none!important;
+}
+
 text-gradient {
 background: -webkit-linear-gradient(234.64deg, #FE1C6D 15.25%, #FF9900 93.3%);
   -webkit-background-clip: text;
