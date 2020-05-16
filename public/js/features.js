@@ -20,8 +20,8 @@ function s3upload() {   var files = document.getElementById('fileUpload').files;
    {
      var file = files[0];
      var fileName = file.name;
-     var filePath = 'my-first-bucket-path/' + fileName;
-     var fileUrl = 'https://' + bucketRegion + '.amazonaws.com/my-    first-bucket/' +  filePath;     s3.upload({        Key: filePath,
+     var filePath = 'uploads/' + fileName;
+     var fileUrl = 'https://' + bucketRegion + '.amazonaws.com/rabidzoo-pics/' +  filePath;     s3.upload({        Key: filePath,
         Body: file,
         ACL: 'public-read'
         }, function(err, data) {
