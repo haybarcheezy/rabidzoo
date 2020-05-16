@@ -1,5 +1,5 @@
 var bucketName = 'rabidzoo-pics';
-var bucketRegion = 'US East (Ohio) us-east-2';
+var bucketRegion = 'us-east-2';
 var IdentityPoolId = 'us-east-2:82137d07-c406-4391-870c-64ee2f480646' 
 ;
 
