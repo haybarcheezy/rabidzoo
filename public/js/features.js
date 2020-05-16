@@ -5,15 +5,12 @@ var IdentityPoolId = 'us-east-2:82137d07-c406-4391-870c-64ee2f480646'
 
  AWS.config.update({
                 region: bucketRegion,
-                credentials: new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: IdentityPoolId
-                })
+                accessKeyId: 'AKIAJGOAXD2WUY6WQPBQ',
+                secretAccessKey: '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',
+                dirName: 'uploads'
             });
 
-            var s3 = new AWS.S3({
-                apiVersion: '2006-03-01',
-                params: {Bucket: bucketName}
-        });
+            var s3 = new AWS.S3(config);
 
 
 function s3upload() {   var files = document.getElementById('fileUpload').files;   if (files) 
