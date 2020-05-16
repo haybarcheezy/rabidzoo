@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.uppy-Dashboard-AddFiles-info {
+  display: none!important;
+}
+
 .is-checked {
   background-color: #1a202c!important;
   color: #f7fafc!important;

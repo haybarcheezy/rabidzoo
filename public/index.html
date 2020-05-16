@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/isotope.js" defer></script>
-    <script src="js/features.js" defer></script>
-    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-    <script src="js/uppy.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.678.0.min.js"></script>
+
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <nav class="fixed z-50 w-full bg-white">
             <div class="md:flex items-center justify-between py-2 px-8 md:px-12 border-b border-gray-200">
                 <div class="flex justify-between items-center">
-                   <div class="text-2xl font-bold text-gray-700 md:text-3xl">
+                    <div class="text-2xl font-bold text-gray-700 md:text-3xl">
                         <a href="#"><svg width="60" height="42" viewBox="0 0 60 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M43.6364 0.90918C38.7273 0.90918 35.4545 3.63645 33.8182 6.90918C33.8182 6.90918 30 11.8183 27.2727 11.8183H16.3636C13.6364 11.8183 10.9091 14.5455 10.9091 14.5455L0 25.4546V28.1819H2.72727L9.27273 21.6365L10.3636 22.7274C10.3636 22.7274 5.45455 32.0001 5.45455 39.091C5.45455 41.8183 8.18182 41.8183 8.18182 41.8183H10.9091C10.9091 41.8183 12 41.8183 10.9091 40.7274L9.81818 39.6365C9.81818 36.9092 14.1818 32.0001 16.3636 29.2728V36.9092C16.3636 38.5455 16.9691 41.8183 18.6055 41.8183H21.3327C21.3327 41.8183 22.4236 41.8183 21.3327 40.7274L20.2418 39.6365C19.1509 37.4546 23.4545 30.9092 23.4545 30.9092H33.2727L36 39.091C37.0909 41.8183 38.7273 41.8183 38.7273 41.8183H44.1818C45.2727 41.8183 48 40.7274 45.2727 39.091L44.1818 38.0001V28.1819C49.6364 28.1819 50.1818 21.091 52.3636 18.9092L56.1818 18.3637C57.2727 18.3637 60.5455 17.2728 60.5455 14.0001V11.8183L54 6.36373C51.2727 3.091 47.4545 0.90918 43.6364 0.90918Z" fill="url(#paint0_linear)"/>
                             <defs>
@@ -31,7 +31,7 @@
                             </defs>
                             </svg>
                             </a>
-                   </div>
+                    </div>
                     <div class="md:hidden">
                         <button type="button" class="block text-gray-700 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
                             <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
                             <a href="" class="inline-block font-medium text-gray-700 rounded no-underline hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">About</a>
                         </li>
                         <li class="border-l mr-2">
-                            <button class=" modal-open bg-transparent ml-4 inline-flex font-medium text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded">Upload</button>
+                            <button id="upload-button" class=" modal-open bg-transparent ml-4 inline-flex font-medium text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded">Upload</button>
                         </li>
                         <li>
                         </li>
@@ -60,42 +60,40 @@
         </nav>
         <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
             <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-            
+
             <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-              
-              <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+
+                <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                   <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                 </svg>
-                <span class="text-sm">(Esc)</span>
-              </div>
-        
-              <!-- Add margin if you want to see some of the overlay behind the modal-->
-              <div class="modal-content py-4 text-left px-6">
-                <!--Title-->
-                <div class="float-right flex justify-between items-center pb-3">
-                  <div class=" modal-close cursor-pointer z-50">
-                    <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <span class="text-sm">(Esc)</span>
+                </div>
+
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="float-right flex justify-between items-center pb-3">
+                        <div class=" modal-close cursor-pointer z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                       <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                     </svg>
-                  </div>
+                        </div>
+                    </div>
+
+                    <!--Body-->
+                    <div>        
+                        <input type="file" id="fileUpload">    
+                     </div>    
+                     <div> 
+                        <button onclick="s3upload()">Submit</button>    
+                     </div>     
+                     <progress max=”100” value=”0”></progress>
+
                 </div>
-        
-                <!--Body-->
-                <div class="flex w-full items-center justify-center bg-grey-lighter pb-6 pt-1">
-                    <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-gradient rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-gradient">
-                        <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                        </svg>
-                        <span class="mt-2 text-base leading-normal">Select a file</span>
-                        <input id="file-upload" type='file' class="hidden" />
-                    </label>
-                </div>
-                
-              </div>
             </div>
-          </div>
-        
+        </div>
+
         <div class="flex bg-white" style="height:700px;">
             <div class="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
                 <div>
@@ -115,7 +113,7 @@
         </div>
     </div>
     <div class="center-it">
-        <ul id="filters"class="button-group filters-button-group text-gray-700 list-none py-4 flex items-center">
+        <ul id="filters" class="button-group filters-button-group text-gray-700 list-none py-4 flex items-center">
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2 is-checked" data-filter="*">all</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100  hover:font-medium py-2 px-4 md:mx-2" data-filter=".beach">beach</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".boat">boat</button></li>
@@ -188,6 +186,9 @@
 
 
     <script src="js/app.js" defer></script>
+    <script src="js/features.js"></script>
+    <script src="js/uppy.js" defer></script>
+
 </body>
 
 </html>
