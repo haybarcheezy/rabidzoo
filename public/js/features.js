@@ -7,10 +7,12 @@ var IdentityPoolId = 'us-east-2:82137d07-c406-4391-870c-64ee2f480646'
                 region: bucketRegion,
                 accessKeyId: 'AKIAJGOAXD2WUY6WQPBQ',
                 secretAccessKey: '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',
-                dirName: 'uploads'
             });
 
-            var s3 = new AWS.S3(config);
+            var s3 = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: {Bucket: bucketName}
+        });
 
 
 function s3upload() {   var files = document.getElementById('fileUpload').files;   if (files) 
