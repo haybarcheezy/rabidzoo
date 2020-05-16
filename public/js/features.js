@@ -26,7 +26,7 @@ function s3upload() {   var files = document.getElementById('fileUpload').files;
         ACL: 'public-read'
         }, function(err, data) {
         if(err) {
-        reject('error');
+        return "an error has occured.";
         }
         alert('Successfully Uploaded!');
         }).on('httpUploadProgress', function (progress) {
