@@ -5,8 +5,8 @@ var IdentityPoolId = 'us-east-2:82137d07-c406-4391-870c-64ee2f480646'
 
  AWS.config.update({
                 region: bucketRegion,
-                accessKeyId: 'AKIAJGOAXD2WUY6WQPBQ',
-                secretAccessKey: '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',
+                accessKeyId: ' AKIA5IXSUY37PSAHZPUT',
+                secretAccessKey: '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',
             });
 
             var s3 = new AWS.S3({
