@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js/isotope.js" defer></script>
+    <script src="js/isotope.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.678.0.min.js"></script>
 
 </head>
@@ -46,12 +47,6 @@
                 </div>
                 <div class="flex flex-col md:flex-row hidden md:block -mx-2">
                     <ul class="text-gray-700 list-none p-0 flex items-center">
-                        <li class="mr-2">
-                            <a href="" class="inline-block font-medium text-gray-700 rounded no-underline hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Home</a>
-                        </li>
-                        <li class="mr-2">
-                            <a href="" class="inline-block font-medium text-gray-700 rounded no-underline hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">About</a>
-                        </li>
                         <li class="border-l mr-2">
                             <button id="upload-button" class=" modal-open bg-transparent ml-4 inline-flex font-medium text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded">Upload</button>
                         </li>
@@ -103,15 +98,18 @@
                 <div>
                     <h2 class="text-4xl lg:text-6xl font-bold leading-tight text-left">View photos with live filtering.</h2>
                     <div class="w-20 h-2 bg-primary my-4"></div>
-                    <p class="mt-6 text-sm text-gray-500 md:text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cum cupiditate ducimus, fugit harum id necessitatibus odio quam quasi, quibusdam rem tempora voluptates. Cumque debitis dignissimos id quam vel!</p>
                     <div class="flex justify-center lg:justify-start mt-6">
-                        <a class="px-4 py-3 bg-gray-900 text-gray-200 text-s font-semibold rounded hover:bg-gray-800" href="#">Get Started</a>
+                        <button  id="main" class="px-4 py-3 bg-gray-900 text-gray-200 text-s font-semibold rounded hover:bg-gray-800">Get Started</button>
                     </div>
                 </div>
             </div>
             <div class="hidden lg:block lg:w-1/2" style="clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%)">
-                <div class="h-full object-cover hero-background">
-                    <div class="h-full bg-black opacity-25"></div>
+                <div id="hero-slider" class="h-full object-cover hero-background text-center">
+                    <img id="hero1" src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena3.jpg" alt="hero1" class=" ">
+                    <img id="hero2" src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/birthday1.jpg" alt="hero2" class="hidden ">
+                    <img id="hero3" src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena7.jpg" alt="hero3" class="hidden ">
+                    <img id="hero4" src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena4.jpg" alt="hero4" class="hidden ">
+                    <img id="hero5" src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/rz+(1).jpg" alt="logolarge" class="hidden ">
                 </div>
             </div>
         </div>
@@ -122,95 +120,123 @@
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100  hover:font-medium py-2 px-4 md:mx-2" data-filter=".austin">Austin</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".bogota">Bogota</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".cartagena">Cartagena</button></li>
-            <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".colombia">Colombia</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".mexico">Mexico</button></li>
-            <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".anca">Anca</button></li>
             <li class="mr-2"><button class="button inline-block font-medium text-gray-700 rounded no-underline border border-gray-400 rounded shadow hover:bg-gray-100 hover:font-medium py-2 px-4 md:mx-2" data-filter=".pets">Pets</button></li>
         </ul>
     </div>
 
-    <section id="grid-container" class="transitions-enabled fluid masonry js-masonry grid">
-        <article class="austin anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/austin1.jpg" class="img-responsive" />
+    <section id="grid-container" class="transitions-enabled fluid masonry js-masonry grid" >
+        <article class="austin anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/austin1.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/birthday1.jpg" class="img-responsive" />
+        <article class="anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/birthday1.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/birthday2.jpg" class="img-responsive" />
+        <article class="anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/birthday2.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca bogota colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/bogota3.jpg" class="img-responsive" />
+        <article class="anca bogota colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/bogota3.jpg" class="img-responsive lazy" />
         </article>
-        <article class="pets anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/bulldogs.jpg" class="img-responsive" />
+        <article class="pets anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/bulldogs.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena anca colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena1.jpg" class="img-responsive" />
+        <article class="cartagena anca colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena1.jpg"  class="img-responsive lazy" />
         </article>
-        <article class="cartagena anca colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena2.jpg" class="img-responsive" />
+        <article class="cartagena anca colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena2.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena anca colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena3.jpg" class="img-responsive" />
+        <article class="cartagena anca colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena3.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena anca colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena4.jpg" class="img-responsive" />
+        <article class="cartagena anca colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena4.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena anca colombia">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena5.jpg" class="img-responsive" />
+        <article class="cartagena anca colombia  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena5.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena6.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena6.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena7.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagena7.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenabase.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca   ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenabase.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenascene.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenascene.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenascene2.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenascene2.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenatour.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenatour.jpg" class="img-responsive lazy" />
         </article>
-        <article class="cartagena colombia anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenawedding.jpg" class="img-responsive" />
+        <article class="cartagena colombia anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/cartagenawedding.jpg" class="img-responsive lazy" />
         </article>
-        <article class="pets anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/dovey1.jpg" class="img-responsive" />
+        <article class="pets anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/dovey1.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/easter.jpg" class="img-responsive" />
+        <article class="anca  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/easter.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca pets">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/galveston.jpg" class="img-responsive" />
+        <article class="anca pets  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/galveston.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca pets">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/galveston2.jpg" class="img-responsive" />
+        <article class="anca pets  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/galveston2.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca mexico">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/mexico1.jpg" class="img-responsive" />
+        <article class="anca mexico  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/mexico1.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca mexico">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/pinkwall.jpg" class="img-responsive" />
+        <article class="anca mexico  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/pinkwall.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca pets">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/pumbaa1.jpg" class="img-responsive" />
+        <article class="anca pets  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/pumbaa1.jpg" class="img-responsive lazy" />
         </article>
-        <article class="anca pets">
-            <img src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/rhino.jpg" class="img-responsive" />
+        <article class="anca pets  ">
+            <img data-src="https://rabidzoo-pics.s3.us-east-2.amazonaws.com/uploads/rhino.jpg" class="img-responsive lazy" />
         </article>
     </section>
+    <footer class="footer bg-gray-900 text-gray-200 text-semibold flex">
+        <div class="text-center flex-auto">
+            <div class="inline-flex py-4"><svg width="39" height="32" viewBox="0 0 39 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.8313 8.21936C36.1491 7.43159 37.1729 4.30614 35.5134 0.0719063C35.5134 0.0719063 32.955 -0.741461 27.1284 3.2722C24.6909 2.58291 22.0838 2.48443 19.5 2.48443C16.9163 2.48443 14.3091 2.58291 11.8716 3.2722C6.045 -0.765093 3.4866 0.0719063 3.4866 0.0719063C1.8291 4.30614 2.85285 7.43159 3.16875 8.21936C1.1934 10.3621 0 13.1193 0 16.4673C0 29.1444 8.1159 32 19.4513 32C30.7866 32 39 29.1444 39 16.4673C39 13.1193 37.8047 10.3621 35.8313 8.21936ZM19.5 29.5875C11.4563 29.5875 4.92375 29.2192 4.92375 21.3415C4.92375 19.4706 5.85 17.6981 7.41 16.2447C10.0191 13.8322 14.4788 15.1123 19.5 15.1123C24.5466 15.1123 28.9575 13.8322 31.59 16.2447C33.1754 17.6981 34.0763 19.445 34.0763 21.3415C34.0763 29.1936 27.5438 29.5875 19.5 29.5875V29.5875ZM13.3829 17.255C11.7741 17.255 10.4579 19.2244 10.4579 21.637C10.4579 24.0495 11.7722 26.0425 13.3829 26.0425C14.9916 26.0425 16.3079 24.0731 16.3079 21.637C16.3079 19.1988 14.9916 17.255 13.3829 17.255ZM25.6172 17.255C24.0084 17.255 22.6922 19.1988 22.6922 21.637C22.6922 24.0731 24.0084 26.0425 25.6172 26.0425C27.2259 26.0425 28.5421 24.0731 28.5421 21.637C28.5421 19.1988 27.2513 17.255 25.6172 17.255Z" fill="url(#paint0_linear)"/>
+                <defs>
+                <linearGradient id="paint0_linear" x1="32.5293" y1="3.98215" x2="-1.04296" y2="23.6019" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FE1C6D"/>
+                <stop offset="1" stop-color="#FF9900"/>
+                </linearGradient>
+                </defs>
+                </svg>
+                </div>
+                
+            <h3 class="subtitle text-gray-200 text-s">Site by @Haybarcheezy</h3>
+        </div>
 
+    </footer>
 
+<script>
+    var elem = document.querySelector('.grid-container');
+var iso = new Isotope( elem, {
+  // options
+  itemSelector: '.grid-item',
+  layoutMode: 'fitRows'
+});
+
+// element argument can be a selector string
+//   for an individual element
+var iso = new Isotope( '.grid', {
+  // options
+});
+</script>
     <script src="js/app.js" defer></script>
     <script src="js/features.js"></script>
-    <script src="js/uppy.js" defer></script>
+    <script src="js/modal.js" defer></script>
 
 </body>
 
